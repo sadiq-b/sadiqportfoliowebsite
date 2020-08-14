@@ -33,6 +33,10 @@
     }
 }
 /* General styles*/
+
+html {
+    scroll-behavior:smooth;
+}
  body {
      background:var(--clr-light);
      color:var(--clr-dark);
@@ -54,6 +58,33 @@
  strong {
      font-weight:var(--fw-bold)
  }
+
+ :focus {
+     outline:3px solid var(--clr-accent);
+     outline-offset:3px;
+ }
+
+ /* button */
+ .btn {
+     display:inline-block;
+     padding: .5em 2.5em;
+     background: var(--clr-accent);
+     color:var(--clr-dark);
+     text-decoration:none;
+     cursor:pointer;
+     font-size: .8rem;
+     text-transform:uppercase;
+     letter-spacing:2px;
+     font-weight: var(--fw-bold);
+     transition: transform 200ms ease-in-out;
+
+}
+
+.btn:hover {
+    transform:scale(1.1);
+}
+
+
 
  /* typography */
  h1,
@@ -145,13 +176,34 @@ header {
 }
 
 .nav-toggle {
-    padding: .5em;
+    padding: 1.0em;
     background: transparent;
     border:0;
     cursor:pointer;
     position:absolute;
     right:1em;
     top:1em;
+    z-index:1000;
+}
+
+.nav-open .nav {
+    transform:translateX(0);
+    
+}
+
+.nav-open .nav-toggle {
+    position:fixed;
+}
+
+.nav-open .hamburger {
+    transform:rotate(.625turn)
+}
+.nav-open .hamburger::before{
+     transform:rotate(90deg) translateX(-6px);
+}
+
+.nav-open .hamburger::after {
+    opacity:0;
 }
 .hamburger {
     display:block;
@@ -160,7 +212,7 @@ header {
 .hamburger,
 .hamburger::before,
 .hamburger::after {
-    background: var(--clr-dark);
+    background: var(--clr-accent);
     width:2em;
     height:3px;
     border-radius:1em;
@@ -173,14 +225,14 @@ header {
     position:absolute;
     left:0;
     right:0;
-    background: var(--clr-dark);
+    background: var(--clr-accent);
 }
 
 .hamburger::before { top:6px;}
 .hamburger::after {bottom:6px;}
 /* intro section */
 
-.intro {
+.intro { 
     position:relative;
 }
 
@@ -206,7 +258,7 @@ header {
 
     .intro__img {
         grid-area:img ;
-        min-width:350px;
+        min-width:250px;
         position:relative;
         z-index:2;
 
@@ -226,6 +278,7 @@ header {
 /* My services section */
 .my-services {
     background-color: var(--clr-dark);
+    background-image: url(../img/backgroundimg.png);
     color: var(--clr-light);
     text-align:center;
 }
@@ -246,6 +299,10 @@ header {
 }
 
 .services{
+    margin-bottom:4em;
+}
+
+.service{
     max-width:500px;
     margin:0 auto;
 }
@@ -254,7 +311,8 @@ header {
     .services {
         display:flex;
         max-width:1000px;
-        margin:0 auto;
+        margin-left:auto;
+        margin-right:auto;
     }
 
     .service + .service {
@@ -266,11 +324,15 @@ header {
     max-width: 1000px;
     margin:0 auto;
 }
-.about-me--img {
-    box-shadow: var(--bs);
-}
 
-@media (min-width: 600px){
+.section__title--about{
+      text-align:center
+}
+/*.about-me--img {
+    box-shadow: var(--bs);
+}*/
+
+  /*@media (min-width: 600px){
     .about-me{
         display:grid;
         grid-template-columns:1fr 200px;
@@ -280,7 +342,7 @@ header {
           "text img";
           
         grid-column-gap:2em;
-    }
+    } 
     
     .section__title--about {
         grid-area:title;
@@ -307,18 +369,28 @@ header {
 /* My work */
 .my-work {
     background-color:var(--clr-dark);
-    color:var(--clr-light);
+     color:var(--clr-light);
     text-align:center;
 }
 
 .portfolio {
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr ));
+    grid-template-columns: repeat(2, 1fr);
+    max-width:720px;
+    margin:0 auto;
+}
+
+@media (min-width:600px) {
+   .portfolio{ grid-template-columns: repeat(3, 1fr);
+    max-width:480px;
+ }
 }
 
 .portfolio__item {
     background: var(--clr-accent);
-    overflow: hidden;
+    overflow:hidden;
+    margin-left: 2em;
+    margin-bottom:2em;
 }
 
 .portfolio__img {
@@ -385,6 +457,20 @@ header {
 .social-list__link {
     padding: .5em;
 }
+
+/* */
+ .portfolio-item-individual {
+     padding: 0 2em 2em;
+     max-width:1000px;
+     margin:0 auto;
+ }
+
+ .portfolio-item-individual p {
+     max-width:600px;
+     margin-left:auto;
+     margin-right:auto;
+
+ }
 
 
 
